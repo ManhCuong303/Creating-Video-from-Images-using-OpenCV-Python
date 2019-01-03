@@ -1,21 +1,22 @@
 from PIL import Image
 import cv2
 import numpy as np
+import json
 
 songData = [
-    [390, u'Fractal', u'Itvara', 'minimix', u'./img/1.jpg'],
-    [322, u'Case & Point', u'Error Code', 'minimix', u'./img/2.jpg'],
-    [261, u'Excision & Pegboard Nerds', u'Bring the Madness (Noisestorm Remix) [feat. Mayor Apeshit]', 'minimix',
+    [50, u'Fractal', u'Itvara', 'minimix', u'./img/1.jpg'],
+    [40, u'Case & Point', u'Error Code', 'minimix', u'./img/2.jpg'],
+    [30, u'Excision & Pegboard Nerds', u'Bring the Madness (Noisestorm Remix) [feat. Mayor Apeshit]', 'minimix',
      u'./img/3.jpg'],
-    [157, u'Nitro Fun', u'Final Boss', 'minimix', u'./img/4.jpg'],
-    [88, u'Astronaut', u'Quantum (Virtual Riot Remix)', 'minimix', u'./img/5.jpg'],
+    [20, u'Nitro Fun', u'Final Boss', 'minimix', u'./img/4.jpg'],
+    [10, u'Astronaut', u'Quantum (Virtual Riot Remix)', 'minimix', u'./img/5.jpg'],
     [0, u'Fractal', u'Contact', 'minimix', u'./img/6.jpg']]
 
-FPS = 5  # Sets the FPS of the entire video
+FPS = 30  # Sets the FPS of the entire video
 currentFrame = 0  # The animation hasn't moved yet, so we're going to leave it as zero
 startFrame = 0  # The animation of the "next" image starts at "startFrame", at most
 trailingSeconds = 5  # Sets the amount of time we give our last image (in seconds)
-blendingDuration = 3.0  # Sets the amount of time that each transition should last for
+blendingDuration = 2.0  # Sets the amount of time that each transition should last for
 # This could be more dynamic, but for now, a constant transition period is chosen
 blendingStart = 10  # Sets the time in which the image starts blending before songFile
 
@@ -29,14 +30,13 @@ current = songData[-1][4]  # We're going to let the script know the location of 
 previous = current  # And this is to force/declare a global variable
 
 height, width, layers = np.array(im1).shape  # Get some stats on the image file to create the video with
-video = cv2.VideoWriter("slideshow.avi",cv2.VideoWriter_fourcc(*'DIVX'), 5, (width, height), True)
+video = cv2.VideoWriter("slideshow.avi",cv2.VideoWriter_fourcc(*'DIVX'), 30, (width, height), True)
 
 while currentFrame < songData[0][0] + FPS * 60 * trailingSeconds:  # RHS defines the limit of the slideshow
     for i in songData:  # Loop through each image timing
         if currentFrame >= i[0] - (blendingStart * FPS):  # If the image timing happens to be for the
             # current image, the continue on...
             # (Notice how songData is reversed)
-
             # The print statement adds some verbosity to the program
             print str(currentFrame) + " - " + str(i[0] - (blendingStart * FPS)) + " - " + i[2]
             if not current == i[4]:  # Check if the image file has changed

@@ -98,7 +98,7 @@ def convert_frames_to_video(pathIn, pathOut, fps):
 def main():
     pathIn = './img3/'
     pathOut = 'video.avi'
-    fps = 2
+    fps = 0.5
     convert_frames_to_video(pathIn, pathOut, fps)
 
 
