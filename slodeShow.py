@@ -105,6 +105,7 @@ cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
 img_one = None
 # Laod every image file path
 for imge_path in img_path_list:
+    print 'xxxxxxxxxxxxxxxxxxxxxxx',imge_path
     # if image is none load image
     if img_one is None:
         # Load first image
