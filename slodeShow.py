@@ -11,7 +11,7 @@ slideshow_height = 1000
 slideshow_trasnition_time = 0.5
 # thoi hien thi anh
 slideshow_img_time = 1
-# title window
+# Window Name
 window_name = "Image Slide Show"
 # Supoorted formats tuple
 supported_formats = ('.png', '.jpg', '.jpeg', '.bmp', '.dib', '.jpe', '.jp2', '.pgm', '.tiff', '.tif', '.ppm')
@@ -111,6 +111,7 @@ for imge_path in img_path_list:
         img_one = load_img(imge_path, slideshow_width, slideshow_height)
         # Show image in window
         cv2.imshow(window_name, img_one)
+
         # wait for slide show time to complete and break if Esc key pressed
         if wait_key(slideshow_img_time):
             break
