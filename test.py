@@ -74,6 +74,7 @@ def convert_frames_to_video(pathIn, pathOut, fps):
 
     for i in range(len(files)):
         filename = pathIn + files[i]
+        print 'sssssssssssssss',filename
         # reading each files
         img = cv2.imread(filename)
         img = load_img(filename, 1000, 500)
